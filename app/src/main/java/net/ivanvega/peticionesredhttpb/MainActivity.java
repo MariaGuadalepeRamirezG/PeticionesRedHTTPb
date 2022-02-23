@@ -51,15 +51,29 @@ public class MainActivity extends AppCompatActivity {
                 v -> jsonRequest()
         );
 
+        //findViewById(R.id.btnImageReq).setOnClickListener(
+        //        v -> imageRequestMethd(),
+       // );
         findViewById(R.id.btnImageReq).setOnClickListener(
-                v -> imageRequestMethd()
-        );
+                v -> {
+
+                    try {
+                        imageRequestMethd();
+                        imageRequestMethd2();
+                        imageRequestMethd3();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                );
     }
 
-    private void imageRequestMethd() {
+    private void imageRequestMethd() throws InterruptedException {
 
         ImageRequest imageRequest = new ImageRequest(
-                "https://www.xda-developers.com/files/2018/03/android-development.png",
+                "https://s1.1zoom.me/big3/471/Painting_Art_Back_view_Photographer_575380_3840x2400.jpg",
+
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap response) {
@@ -70,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 300, 300,
                 ImageView.ScaleType.CENTER,
                 Bitmap.Config.ALPHA_8,
+
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -81,6 +96,71 @@ public class MainActivity extends AppCompatActivity {
 
         MySingleton.getInstance(this).
                 addToRequestQueue(imageRequest);
+
+
+    }
+
+    private void imageRequestMethd2() {
+
+        ImageRequest imageRequest = new ImageRequest(
+                "https://live.staticflickr.com/65535/51307594059_aca75afe2b.jpg",
+
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+
+                        imgview.setImageBitmap(response);
+                    }
+                },
+                300, 300,
+                ImageView.ScaleType.CENTER,
+                Bitmap.Config.ALPHA_8,
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+
+        );
+
+
+        MySingleton.getInstance(this).
+                addToRequestQueue(imageRequest);
+
+
+    }
+
+    private void imageRequestMethd3() {
+
+        ImageRequest imageRequest = new ImageRequest(
+                "https://live.staticflickr.com/65535/51307882275_7479b2422c.jpg",
+
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+
+                        imgview.setImageBitmap(response);
+                    }
+                },
+                300, 300,
+                ImageView.ScaleType.CENTER,
+                Bitmap.Config.ALPHA_8,
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+
+        );
+
+
+        MySingleton.getInstance(this).
+                addToRequestQueue(imageRequest);
+
 
     }
 
